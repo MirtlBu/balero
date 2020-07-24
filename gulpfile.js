@@ -4,7 +4,6 @@ const series = require('gulp'),
     parallel = require('gulp'),
     gulp = require('gulp'),
     del = require("del"),
-    gulpCopy = require('gulp-copy'),
     concat = require('gulp-concat'),
     cssmin = require('gulp-cssmin'),
     uglify = require('gulp-uglify'),
@@ -86,7 +85,6 @@ function js() {
 
 function vendors() {
     return gulp.src(paths.vendors + '*.js')
-        .pipe(gulpCopy(''))
         .pipe(gulp.dest(paths.build + 'vendors/'));
 }
 
@@ -112,7 +110,6 @@ function html() {
 
 function favicons() {
     return gulp.src(paths.favicons + '*.*')
-        .pipe(gulpCopy(''))
         .pipe(gulp.dest(paths.build));
 }
 

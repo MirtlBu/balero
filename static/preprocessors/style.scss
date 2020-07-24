@@ -19,6 +19,7 @@ body {
 
 a {
   text-decoration: none;
+  outline: none;
 }
 
 .h1 {
@@ -43,6 +44,7 @@ a {
 }
 
 .button {
+  display: inline-block;
   padding: 16px 32px 16px 32px;
   box-sizing: border-box;
   background-color: $color-contrast;
@@ -55,14 +57,34 @@ a {
   transition: background-color .3s;
   cursor: pointer;
 
+  &__link {
+    color: $color-light;
+    position: relative;
+
+    &:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: -4px;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 0;
+      position: absolute;
+      background: $color-light;
+      width: 0%;
+    }
+
+    &:focus {
+      outline: none;
+
+      &:after {
+          width: 100%;
+        }
+    }
+  }
+
   &:hover {
     background-color: transparent;
     border: 1px solid $color-light;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 1px $color-light;
   }
 }
 
@@ -84,7 +106,7 @@ a {
   left: 0;
   right: 0;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -101,6 +123,7 @@ a {
   margin-right: 24px;
   cursor: pointer;
   text-decoration: none;
+  padding: 8px;
 
   &:after,
   &:before,
@@ -143,16 +166,12 @@ a {
 }
 
 .nav {
-  position: absolute;
-  left: 0;
-  top: 24px;
-  width: 100%;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: flex-end;
 
   &__items {
-    width: 100%;
     background-color: $color-dark;
     box-sizing: border-box;
     text-align: center;
@@ -167,6 +186,7 @@ a {
     &--active {
       visibility: visible;
       opacity: 1;
+      margin-top: 24px;
     }
 }
 
@@ -187,10 +207,77 @@ a {
     text-transform: uppercase;
     text-decoration: none;
     line-height: 100%;
+    position: relative;
+    box-sizing: border-box;
 
     &:focus {
       outline: none;
       box-shadow: 0px 0px 0px 1px $color-contrast;
+    }
+  }
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+
+  &__link {
+    color: $color-light;
+    text-decoration: none;
+    line-height: 100%;
+    padding: 8px 8px 8px 8px;
+    position: relative;
+
+    &:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      background: $color-contrast;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+
+    &:hover {
+      &:after {
+        width: calc(100% - 16px); 
+        left: 8px; 
+      }
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0px 0px 0px 1px $color-contrast;
+    }
+  }
+
+  &__item {
+    
+    &:first-child {
+      & .lang__link {
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: 0;
+          width: 1px;
+          height: 30%;
+          transform: translateY(-50%);
+          background-color: $color-light;
+        }
+      }
+    }
+
+    &:hover, &--active {
+
+      & .lang__link {
+        color: $color-contrast;
+      }
     }
   }
 }
@@ -222,7 +309,6 @@ a {
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
-    animation-duration: 2s;
   }
 }
 
@@ -239,7 +325,6 @@ a {
   &__items {
     display: flex;
     flex-direction: column;
-    animation-duration: 2s;
   }
 
   &__item {
@@ -288,7 +373,6 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation-duration: 2s;
 
     &:not(:last-child) {
       margin-bottom: 64px;
@@ -330,7 +414,7 @@ a {
   background-color: $color-contrast;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
   color: $color-light;
   text-align: center;
 
@@ -338,13 +422,31 @@ a {
     margin-bottom: 32px;
   }
 
-  .button {
-    align-self: center;
-    border: 1px solid $color-light;
+  &__link {
+    color: $color-light;
+    text-decoration: none;
+    line-height: 100%;
+    padding: 8px 8px 8px 8px;
+    position: relative;
+
+    &:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      background: $color-light;
+      transition: width 0.5s ease 0s, left 0.5s ease 0s;
+      width: 0;
+    }
 
     &:hover {
-      background-color: $color-light;
-      color: $color-contrast;
+      &:after {
+        width: 0 !important;
+        left: 50% !important;
+      }
     }
 
     &:focus {
@@ -353,6 +455,16 @@ a {
     }
   }
 }
+
+[data-aos="hover-animation"] {
+  &.aos-animate {
+    &:after {
+      width: calc(100% - 16px); 
+      left: 8px; 
+    }
+  }
+}
+
 
 .contacts {
   padding: 64px 24px 80px 24px;
@@ -393,10 +505,12 @@ a {
   }
 
   &__img {
-
+    path {
+      transition: all 0.2s;
+    }
+    
     &:hover {
       path {
-        transition: all 0.2s;
         fill: $color-contrast;
       }
     }
@@ -411,10 +525,35 @@ a {
 
   &__link {
     color: $color-light;
-    text-decoration: underline;
+    text-decoration: none;
+    line-height: 100%;
+    padding: 8px 8px 8px 8px;
+    position: relative;
+
+    &:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      background: $color-contrast;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
 
     &:hover {
       color: $color-contrast;
+      &:after {
+        width: calc(100% - 16px); 
+        left: 8px; 
+      }
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0px 0px 0px 1px $color-contrast;
     }
   }
 }
@@ -471,6 +610,7 @@ a {
     top: 0;
     width: auto;
     flex-direction: row;
+    justify-content: flex-end;
 
     &__items {
       display: flex;
@@ -500,7 +640,26 @@ a {
 
     &__link {
       transition: all 0.2s;
-      padding: 0;
+
+      &:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      background: $color-contrast;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+
+    &:hover {
+      &:after {
+        width: calc(100% - 16px); 
+        left: 8px; 
+      }
+    }
     }
   }
 
@@ -594,6 +753,7 @@ a {
   .callback {
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 
     .h3 {
       margin-bottom: 0;
@@ -711,4 +871,3 @@ a {
     }
   }
 }
-
