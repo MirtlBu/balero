@@ -57,32 +57,7 @@ a {
   transition: background-color .3s;
   cursor: pointer;
 
-  &__link {
-    color: $color-light;
-    position: relative;
-
-    &:after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: -4px;
-      content: "";
-      display: block;
-      height: 1px;
-      left: 0;
-      position: absolute;
-      background: $color-light;
-      width: 0%;
-    }
-
-    &:focus {
-      outline: none;
-
-      &:after {
-          width: 100%;
-        }
-    }
-  }
-
-  &:hover {
+  &:hover, &:focus {
     background-color: transparent;
     border: 1px solid $color-light;
   }
@@ -97,6 +72,46 @@ a {
 .text {
   font-weight: 300;
   line-height: 150%;
+}
+
+@mixin link ($color1, $color2) {
+  padding: 8px 8px 8px 8px;
+  color: $color1;
+  text-decoration: none;
+  line-height: 100%;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 50%;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background: none repeat scroll 0 0 transparent;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  }
+
+  &:focus {
+    outline: none;
+
+    &:after {
+      background: $color1;
+      width: calc(100% - 16px); 
+      left: 8px; 
+    }
+  }
+
+  &:hover {
+    color: $color2;
+
+    &:after {
+      background: $color2;
+      width: calc(100% - 16px); 
+      left: 8px; 
+    }
+  }
 }
 
 .header {
@@ -161,7 +176,7 @@ a {
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 1px $color-contrast;
+    box-shadow: 0px 0px 0px 1px $color-light;
   }
 }
 
@@ -202,18 +217,7 @@ a {
   }
 
   &__link {
-    padding: 8px 8px 8px 8px;
-    color: $color-light;
-    text-transform: uppercase;
-    text-decoration: none;
-    line-height: 100%;
-    position: relative;
-    box-sizing: border-box;
-
-    &:focus {
-      outline: none;
-      box-shadow: 0px 0px 0px 1px $color-contrast;
-    }
+    @include link($color-light, $color-contrast);
   }
 }
 
@@ -223,36 +227,7 @@ a {
   margin-left: 16px;
 
   &__link {
-    color: $color-light;
-    text-decoration: none;
-    line-height: 100%;
-    padding: 8px 8px 8px 8px;
-    position: relative;
-
-    &:after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: 0;
-      content: "";
-      display: block;
-      height: 1px;
-      left: 50%;
-      position: absolute;
-      background: $color-contrast;
-      transition: width 0.3s ease 0s, left 0.3s ease 0s;
-      width: 0;
-    }
-
-    &:hover {
-      &:after {
-        width: calc(100% - 16px); 
-        left: 8px; 
-      }
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0px 0px 0px 1px $color-contrast;
-    }
+    @include link($color-light, $color-contrast);
   }
 
   &__item {
@@ -498,18 +473,12 @@ a {
   width: 100%;
   max-width: 480px;
 
-  &__item {
-    &:not(:last-child) {
-      
-    }
-  }
-
-  &__img {
+  &__link {
     path {
       transition: all 0.2s;
     }
     
-    &:hover {
+    &:hover, &:focus {
       path {
         fill: $color-contrast;
       }
@@ -524,37 +493,7 @@ a {
   color: $color-light;
 
   &__link {
-    color: $color-light;
-    text-decoration: none;
-    line-height: 100%;
-    padding: 8px 8px 8px 8px;
-    position: relative;
-
-    &:after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: 0;
-      content: "";
-      display: block;
-      height: 1px;
-      left: 50%;
-      position: absolute;
-      background: $color-contrast;
-      transition: width 0.3s ease 0s, left 0.3s ease 0s;
-      width: 0;
-    }
-
-    &:hover {
-      color: $color-contrast;
-      &:after {
-        width: calc(100% - 16px); 
-        left: 8px; 
-      }
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0px 0px 0px 1px $color-contrast;
-    }
+    @include link($color-light, $color-contrast);
   }
 }
 
@@ -857,7 +796,7 @@ a {
 
     &__imageblock {
       display: flex;
-      align-items: center;
+      align-items: center; 
     }
 
     &__textblock {

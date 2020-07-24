@@ -3,8 +3,8 @@
   const HAM = document.querySelector('.hamburger');
   const NAV = document.querySelector('.nav__items');
   const NAVS = document.querySelectorAll('.nav__item');
-
-  const ACTIVE = '--active';
+  const HAMACTIVE = 'hamburger--active';
+  const NAVACTIVE = 'nav__items--active';
 
   //scroll
   NAVS.forEach(element => {
@@ -17,19 +17,24 @@
   //nav panel logic
   HAM.addEventListener('click', function(e) {
     e.stopPropagation();
-    HAM.classList.contains(HAM + ACTIVE) ? HAM.classList.remove(HAM + ACTIVE) : HAM.classList.add(HAM + ACTIVE);
-    NAV.classList.contains(NAV + ACTIVE) ? NAV.classList.remove(NAV + ACTIVE) : NAV.classList.add(NAV + ACTIVE);
+    HAM.classList.contains(HAMACTIVE) ? HAM.classList.remove(HAMACTIVE) : HAM.classList.add(HAMACTIVE);
+    NAV.classList.contains(NAVACTIVE) ? NAV.classList.remove(NAVACTIVE) : NAV.classList.add(NAVACTIVE);
   });
 
   BODY.addEventListener('click', function() {
-    if(NAV.classList.contains(NAV + ACTIVE)) {
-      NAV.classList.remove(NAV + ACTIVE);
-      HAM.classList.remove(HAM + ACTIVE);
+    if(NAV.classList.contains(NAVACTIVE)) {
+      NAV.classList.remove(NAVACTIVE);
+      HAM.classList.remove(HAMACTIVE);
     }
   });
 
   //animation plugin
   AOS.init({
    duration: 700
+  });
+
+  document.addEventListener("scroll", function() {
+      // get the active element and call blur
+      document.activeElement.blur();
   });
 })()

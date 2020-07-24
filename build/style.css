@@ -94,24 +94,7 @@ a {
   border: 1px solid #FE0075;
   transition: background-color .3s;
   cursor: pointer; }
-  .button__link {
-    color: #FFFFFF;
-    position: relative; }
-    .button__link:after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: -4px;
-      content: "";
-      display: block;
-      height: 1px;
-      left: 0;
-      position: absolute;
-      background: #FFFFFF;
-      width: 0%; }
-    .button__link:focus {
-      outline: none; }
-      .button__link:focus:after {
-        width: 100%; }
-  .button:hover {
+  .button:hover, .button:focus {
     background-color: transparent;
     border: 1px solid #FFFFFF; }
 
@@ -164,7 +147,7 @@ a {
     transform: scale(0); }
   .hamburger:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 1px #FE0075; }
+    box-shadow: 0px 0px 0px 1px #FFFFFF; }
 
 .nav {
   display: flex;
@@ -196,42 +179,64 @@ a {
   .nav__link {
     padding: 8px 8px 8px 8px;
     color: #FFFFFF;
-    text-transform: uppercase;
     text-decoration: none;
     line-height: 100%;
-    position: relative;
-    box-sizing: border-box; }
+    position: relative; }
+    .nav__link:after {
+      content: "";
+      position: absolute;
+      display: block;
+      left: 50%;
+      bottom: 0;
+      height: 1px;
+      width: 0;
+      background: none repeat scroll 0 0 transparent;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s; }
     .nav__link:focus {
-      outline: none;
-      box-shadow: 0px 0px 0px 1px #FE0075; }
+      outline: none; }
+      .nav__link:focus:after {
+        background: #FFFFFF;
+        width: calc(100% - 16px);
+        left: 8px; }
+    .nav__link:hover {
+      color: #FE0075; }
+      .nav__link:hover:after {
+        background: #FE0075;
+        width: calc(100% - 16px);
+        left: 8px; }
 
 .lang {
   display: flex;
   align-items: center;
   margin-left: 16px; }
   .lang__link {
+    padding: 8px 8px 8px 8px;
     color: #FFFFFF;
     text-decoration: none;
     line-height: 100%;
-    padding: 8px 8px 8px 8px;
     position: relative; }
     .lang__link:after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: 0;
       content: "";
-      display: block;
-      height: 1px;
-      left: 50%;
       position: absolute;
-      background: #FE0075;
-      transition: width 0.3s ease 0s, left 0.3s ease 0s;
-      width: 0; }
-    .lang__link:hover:after {
-      width: calc(100% - 16px);
-      left: 8px; }
+      display: block;
+      left: 50%;
+      bottom: 0;
+      height: 1px;
+      width: 0;
+      background: none repeat scroll 0 0 transparent;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s; }
     .lang__link:focus {
-      outline: none;
-      box-shadow: 0px 0px 0px 1px #FE0075; }
+      outline: none; }
+      .lang__link:focus:after {
+        background: #FFFFFF;
+        width: calc(100% - 16px);
+        left: 8px; }
+    .lang__link:hover {
+      color: #FE0075; }
+      .lang__link:hover:after {
+        background: #FE0075;
+        width: calc(100% - 16px);
+        left: 8px; }
   .lang__item:first-child .lang__link:before {
     content: '';
     position: absolute;
@@ -391,9 +396,9 @@ a {
   justify-content: space-between;
   width: 100%;
   max-width: 480px; }
-  .social__img path {
+  .social__link path {
     transition: all 0.2s; }
-  .social__img:hover path {
+  .social__link:hover path, .social__link:focus path {
     fill: #FE0075; }
 
 .footer {
@@ -402,30 +407,33 @@ a {
   background-color: #201F1F;
   color: #FFFFFF; }
   .footer__link {
+    padding: 8px 8px 8px 8px;
     color: #FFFFFF;
     text-decoration: none;
     line-height: 100%;
-    padding: 8px 8px 8px 8px;
     position: relative; }
     .footer__link:after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: 0;
       content: "";
-      display: block;
-      height: 1px;
-      left: 50%;
       position: absolute;
-      background: #FE0075;
-      transition: width 0.3s ease 0s, left 0.3s ease 0s;
-      width: 0; }
+      display: block;
+      left: 50%;
+      bottom: 0;
+      height: 1px;
+      width: 0;
+      background: none repeat scroll 0 0 transparent;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s; }
+    .footer__link:focus {
+      outline: none; }
+      .footer__link:focus:after {
+        background: #FFFFFF;
+        width: calc(100% - 16px);
+        left: 8px; }
     .footer__link:hover {
       color: #FE0075; }
       .footer__link:hover:after {
+        background: #FE0075;
         width: calc(100% - 16px);
         left: 8px; }
-    .footer__link:focus {
-      outline: none;
-      box-shadow: 0px 0px 0px 1px #FE0075; }
 
 @media (min-width: 768px) {
   body {
