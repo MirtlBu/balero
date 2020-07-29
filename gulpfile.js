@@ -26,7 +26,8 @@ const paths = {
     js: 'js/',
     img: 'img/',
     html: {
-        templates: 'templates/',
+        templates_eng: 'templates-eng/',
+        templates_rus: 'templates-rus/',
         index: ''
     },
     fonts: 'fonts/',
@@ -101,8 +102,15 @@ function img() {
     })();
 }
 
-function html() {
-    return gulp.src(paths.html.templates + '*.html')
+function html_rus() {
+    return gulp.src(paths.html.templates_rus + '*.html')
+        .pipe(plumber())
+        .pipe(include())
+        .pipe(gulp.dest(paths.build));
+}
+
+function html_eng() {
+    return gulp.src(paths.html.templates_eng + '*.html')
         .pipe(plumber())
         .pipe(include())
         .pipe(gulp.dest(paths.build));
@@ -130,14 +138,15 @@ function watcher() {
     gulp.watch('**/*.less', lessy);
     gulp.watch('**/*.css', css);
     gulp.watch('**/*.js', js);
-    gulp.watch('**/*.html', html);
+    gulp.watch('**/*.html', html_vers);
     gulp.watch(['**/*.jpg','**/*.png','**/*.svg', '**/*.gif'], img);
     gulp.watch(['**/*.ttf', '**/*.otf', '**/*.woff'], fonts);
 }
 
-const build = gulp.series(clean, gulp.parallel(css, js, html, img, fonts, vendors, favicons));
+const html_vers = gulp.parallel(html_rus, html_eng);
+const build = gulp.series(clean, gulp.parallel(css, js, html_vers, img, fonts, vendors, favicons));
 const start = gulp.series(build, gulp.parallel(server, watcher));
-const prod = gulp.series(clean, gulp.parallel(css, js, html, img, fonts, vendors, favicons), gulp.parallel(css_minifier, js_uglifier));
+const prod = gulp.series(clean, gulp.parallel(css, js, html_vers, img, fonts, vendors, favicons), gulp.parallel(css_minifier, js_uglifier));
 
 exports.prod = prod;
 exports.start = start;
