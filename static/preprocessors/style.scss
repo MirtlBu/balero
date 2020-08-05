@@ -5,7 +5,8 @@ $color-dark: #201F1F;
 $color-light: #FFFFFF;
 
 $breakpoint-tablet: 768px;
-$breakpoint-desktop: 1028px;
+$breakpoint-desktop-small: 1028px;
+$breakpoint-desktop-bigger: 1280px;
 
 
 body {
@@ -672,7 +673,7 @@ a {
       padding-right: 24px;
 
       &:nth-child(1), &:nth-child(2) {
-        padding-bottom: 48px;
+        padding-bottom: 80px;
       }
     }
 
@@ -728,7 +729,7 @@ a {
   }
 }
 
-@media (min-width: $breakpoint-desktop) {
+@media (min-width: $breakpoint-desktop-small) {
 
   body {
     font-size: 18px;
@@ -751,7 +752,7 @@ a {
   }
 
   .hero {
-    padding: 174px 142px 174px 142px;
+    padding: 174px 40px 174px 40px;
     text-align: center;
 
     .h3 {
@@ -760,8 +761,8 @@ a {
   }
 
   .callback, .contacts, .features, .services, .footer {
-    padding-left: calc((100% - 1028px)/2);
-    padding-right: calc((100% - 1028px)/2);
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .services {
@@ -803,6 +804,7 @@ a {
 
     &__imageblock {
       display: flex;
+      flex-direction: row;
       align-items: center;
       height: 320px;
     }
@@ -816,5 +818,17 @@ a {
     &__text {
       max-width: none;
     }
+  }
+}
+
+@media (min-width: $breakpoint-desktop-bigger) {
+  .hero {
+    padding: 174px 142px 174px 142px;
+    text-align: center;
+  }
+
+  .callback, .contacts, .features, .services, .footer {
+    padding-left: calc((100% - 1028px)/2);
+    padding-right: calc((100% - 1028px)/2);
   }
 }

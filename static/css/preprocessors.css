@@ -486,7 +486,7 @@ a {
       .services__item:not(:last-child) {
         margin-bottom: 0px; }
       .services__item:nth-child(1), .services__item:nth-child(2) {
-        padding-bottom: 48px; }
+        padding-bottom: 80px; }
     .services__title {
       font-size: 24px; }
     .services__textblock {
@@ -528,13 +528,13 @@ a {
     font-size: 24px;
     margin-bottom: 80px; }
   .hero {
-    padding: 174px 142px 174px 142px;
+    padding: 174px 40px 174px 40px;
     text-align: center; }
     .hero .h3 {
       max-width: 795px; }
   .callback, .contacts, .features, .services, .footer {
-    padding-left: calc((100% - 1028px)/2);
-    padding-right: calc((100% - 1028px)/2); }
+    padding-left: 40px;
+    padding-right: 40px; }
   .services__item {
     flex-basis: 100%;
     padding-right: 0px;
@@ -555,6 +555,7 @@ a {
       order: 0; }
   .services__imageblock {
     display: flex;
+    flex-direction: row;
     align-items: center;
     height: 320px; }
   .services__textblock {
@@ -563,3 +564,11 @@ a {
     text-align: left; }
   .services__text {
     max-width: none; } }
+
+@media (min-width: 1280px) {
+  .hero {
+    padding: 174px 142px 174px 142px;
+    text-align: center; }
+  .callback, .contacts, .features, .services, .footer {
+    padding-left: calc((100% - 1028px)/2);
+    padding-right: calc((100% - 1028px)/2); } }
