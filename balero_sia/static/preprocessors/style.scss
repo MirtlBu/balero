@@ -270,7 +270,7 @@ a {
   background-size: cover;
   background-position: bottom center;
   color: $color-light;
-  padding: 120px 24px 40px 24px;
+  padding: 120px 24px 80px 24px;
   text-align: center;
 }
 
@@ -314,16 +314,20 @@ a {
   padding: 80px 24px 80px 24px;
   background-color: $color-light;
   color: $color-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 
-  &__wrapper {
-    height: 30vh;
+  &__h2 {
+    text-align: center;
   }
 
   &__items {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 100%;
+    height: 30vh;
   }
 
   &__item {
@@ -335,7 +339,8 @@ a {
   }
 
   &__num {
-    font-size: 24px;
+    font-size: 48px;
+    line-height: 1;
     font-family: $font-bold;
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
@@ -405,7 +410,25 @@ a {
     width: 100%;
     height: 100%;
     z-index: 9;
-    transform-style: flat;
+    position: relative;
+  }
+
+  &__wrapimage {
+    position: relative;
+    max-width: calc(560px + 80px);
+    margin: 0 auto;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $color-dark-lighter;
+      z-index: -1;
+    }
   }
 
   &__img {
@@ -482,6 +505,8 @@ a {
       background-position: 90% 90%;
     }
   }
+
+
 
   .h1 {
     font-size: 80px;
