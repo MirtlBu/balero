@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Balero trading</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <svg width="246" height="71" viewBox="0 0 246 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 1H11V60.5H14V1Z" fill="white"/>
+      <path d="M11 57.5V60.5H53V57.5H11Z" fill="white"/>
+      <path d="M11 1V4H53V1H11Z" fill="white"/>
+      <path d="M53 50.5H50V58H53V50.5Z" fill="white"/>
+      <path d="M53 4H50V21.5H53V4Z" fill="white"/>
+      <path d="M3 21.5H0V71H3V21.5Z" fill="white"/>
+      <path d="M0 68V71H42V68H0Z" fill="white"/>
+      <path d="M42 63.5H39V71H42V63.5Z" fill="white"/>
+      <path d="M0.5 21.5V24.5H8V21.5H0.5Z" fill="white"/>
+      <path d="M20.96 50H34.325C43.29 50 47.91 45.93 47.91 39.275C47.91 33.775 44.335 30.86 39.22 30.09C43.51 28.99 46.15 26.075 46.15 21.4C46.15 15.295 41.86 11.5 34.105 11.5H20.96V50ZM34.215 14.195C39.99 14.195 43.18 17 43.18 21.565C43.18 26.185 39.935 28.99 34.215 28.99H23.93V14.195H34.215ZM34.325 31.685C40.98 31.685 44.83 34.38 44.83 39.44C44.83 44.28 41.255 47.305 34.325 47.305H23.93V31.685H34.325ZM79.8345 47.415C78.1845 47.415 77.3595 46.865 77.3595 44.72V31.74C77.3595 25.36 73.4545 21.785 66.4695 21.785C60.0895 21.785 55.8545 24.865 55.1395 29.925H57.9445C58.6595 26.515 61.6295 24.26 66.3595 24.26C71.5845 24.26 74.5545 27.01 74.5545 31.63V34.05H65.0945C57.9445 34.05 54.0945 37.13 54.0945 42.355C54.0945 47.305 57.9995 50.33 63.9395 50.33C69.6045 50.33 72.9595 47.745 74.6645 44.28V45.27C74.5545 48.57 75.9295 50 79.2295 50H80.8795V47.415H79.8345ZM74.5545 38.725C74.5545 44.06 70.7595 47.91 64.1595 47.91C59.7045 47.91 56.9545 45.655 56.9545 42.19C56.9545 38.505 59.7045 36.47 64.8745 36.47H74.5545V38.725ZM86.2805 50H89.0855V11.5H86.2805V50ZM109.65 50.33C115.755 50.33 120.43 46.37 121.64 40.76H118.78C117.68 45.105 113.995 47.8 109.43 47.8C103.215 47.8 99.31 43.07 99.2 36.58V36.085H121.97C121.97 35.7 122.025 35.26 122.025 34.93C121.75 26.625 116.635 21.785 109.155 21.785C101.51 21.785 96.285 27.615 96.285 35.865C96.285 44.61 101.73 50.33 109.65 50.33ZM99.42 33.72C99.86 28.055 104.095 24.26 109.21 24.26C114.655 24.26 118.56 27.615 119 33.72H99.42ZM140.605 22.115C135.435 22.115 133.235 24.59 132.08 27.67L131.64 22.115H129.22V50H132.025V35.865C132.025 30.2 133.51 24.81 140.055 24.81H142.09V22.115H140.605ZM158.229 50.33C166.094 50.33 171.649 44.5 171.649 36.03C171.649 27.615 166.094 21.785 158.229 21.785C150.364 21.785 144.864 27.615 144.864 36.03C144.864 44.5 150.364 50.33 158.229 50.33ZM158.229 47.8C152.014 47.8 147.724 42.96 147.724 36.03C147.724 29.155 152.014 24.26 158.229 24.26C164.444 24.26 168.734 29.155 168.734 36.03C168.734 42.96 164.444 47.8 158.229 47.8Z" fill="white"/>
+      <path d="M183.28 40.8C183.32 46.48 187.76 50.24 194.88 50.24C201.44 50.24 205.76 46.64 205.8 41.4C205.84 35.76 201.6 34.32 196.8 33.44C192.16 32.56 189.96 32.08 189.96 29.8C189.96 27.64 191.8 26.56 194.36 26.56C197.28 26.56 199.08 28.2 199.36 30.56H205.24C205.16 25.2 200.96 21.76 194.36 21.76C188.04 21.76 183.92 25.28 183.92 30.24C183.92 35.92 188.08 37.44 192.8 38.32C197.48 39.24 199.76 39.72 199.76 42.08C199.76 44.28 197.72 45.48 194.96 45.48C191.52 45.48 189.36 43.6 189.16 40.88L183.28 40.8ZM209.4 50H215.4V22H209.4V50ZM224.102 50L226.262 43.88H236.902L239.062 50H245.502L235.342 22H228.142L217.902 50H224.102ZM231.542 28.4L235.262 39.04H227.862L231.542 28.4Z" fill="white"/>
+      </svg>
+      </div>
+      <div class="lang">
+        <div class="lang__item lang__item--active">
+          <a href="/" class="lang__link link">rus</a>
+        </div>
+        <div class="lang__item">
+          <a href="index-en.html" class="lang__link link">en</a>
+        </div>
+      </div>
+    </header>
+    <a href="javascript:void(0);" class="hamburger">
+      <span class="hamburger__link"></span>
+    </a>
+    <div class="sidebar">
+      <div class="sidebar_content">
+        <ul class="nav">
+          <li class="nav__item" data-block="about"><a href="javascript:void(0);" class="nav__link link">О нас</a></li>
+          <li class="nav__item" data-block="services"><a href="javascript:void(0);" class="nav__link link">Услуги</a></li>
+          <li class="nav__item" data-block="contacts"><a href="javascript:void(0);" class="nav__link link">Контакты</a></li>
+        </ul>
+          <ul class="social">
+          <li class="social__item">
+            <a href="" target=”_blank” class="social__link text">
+              Facebook
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="" target=”_blank” class="social__link text">
+              Vkontakte
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="" target=”_blank” class="social__link text">
+              Instagram
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="" target=”_blank” class="social__link text">
+              Tik-tok
+            </a>
+          </li>
+          </ul>
+      </div>
+      
+    </div>
+    <div class="hero">
+      <h1 class="h1">
+        Обувь для танцев —&nbsp;напрямую от&nbsp;производителя
+      </h1>
+      <a href="mailto:info@balerotrading.com" target="_blank" rel="noopener noreferrer" class="link">Задать вопрос</a>
+    </div>
+
+    <div class="about">
+      <h2 class="h2">О компании</h2>
+      <figure class="about__imageblock">
+            <figcaption class="about__textblock">
+              <p class="about__text text text--lighter">
+                Наша компания Balero Trading имеет опыт работы в&nbsp;отрасли с&nbsp;2015 года. Наши специалисты помогут подобрать продукцию, которая будет соответствовать всем вашим требованиям, начиная от&nbsp;технических особенностей, заканчивая эстетическими . Нас&nbsp;отличает индивидуальный подход к&nbsp;каждому клиенту. Минимальная наценка.
+              </p>
+            </figcaption>
+            <div class="about__images">
+              <img src="img/about_1x2.png"
+                  srcset="img/about_1.png 589w,
+                          img/about_1x2.png 2x"
+                  alt="photo of working man"
+                  class="about__img" id="about_appear1"
+              />
+              <img src="img/about_2x2.png"
+                  srcset="img/about_2.png 589w,
+                          img/about_2x2.png 2x"
+                  alt="photo of working man"
+                  class="about__img" id="about_appear2"
+              />
+              <img src="img/about_3x2.png"
+                  srcset="img/about_3.png 589w,
+                          img/about_3x2.png 2x"
+                  alt="photo of working man"
+                  class="about__img" id="about_appear3"
+              />
+            </div>
+          </figure>
+    </div>
+    <div class="features">
+      <h2 class="h2 features__h2">Почему стоит выбрать нас?</h2>
+      <div class="features__wrapper">
+        <ul class="features__items">
+          <li class="features__item" id="feature_appear1" >
+            <span class="features__num">01</span>
+            <span class="features__title">Пять лет опыта</span>
+            <span class="features__text text text--darker">
+              Мы сотрудничаем более чем с&nbsp;20-ю производителями балетной продукции, которые могут произвести заказ любой сложности с&nbsp;учетом пожеланий клиента.
+            </span>
+          </li>
+          <li class="features__item" id="feature_appear2">
+            <span class="features__num">02</span>
+            <span class="features__title">Индивидуальный подход</span>
+            <span class="features__text text text--darker">
+              Найдем производителей по&nbsp;вашим требованиям. Сформируем техническое задание на&nbsp;производство. Найдем необходимые материалы для&nbsp;соответствия всем требованиям заказчика. Доставим заказ в&nbsp;любую точку мира.
+            </span>
+          </li>
+          <li class="features__item" id="feature_appear3">
+            <span class="features__num">03</span>
+            <span class="features__title">Непрерывный рост</span>
+            <span class="features__text text text--darker">
+              Мы поможем реализовать Ваши креативные замыслы, которые выигрышно выделят Вас на&nbsp;рынке и&nbsp;помогут выйти на&nbsp;новый уровень.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="services">
+      <h2 class="h2">Наши услуги</h2>
+      <div class="services__items">
+        <div class="services__item">
+          <figure class="services__imageblock">
+            <figcaption class="services__textblock">
+              <div class="services__title">Подберём производителя</div>
+              <p class="services__text text text--lighter">
+                Проанализируем Ваши пожелания и&nbsp;подберем под&nbsp;Вас самого подходящего производителя. Предоставим образцы продукции.
+              </p>
+            </figcaption>
+            <img src="img/services01x2.png"
+                  srcset="img/services01.png 589w,
+                          img/services01x2.png 2x"
+                  alt="photo of working notebook"
+                  class="services__img"
+              />
+          </figure>
+        </div>
+        <div class="services__item">
+          <figure class="services__imageblock">
+            <figcaption class="services__textblock">
+              <div class="services__title">Доставим в любую точку мира</div>
+              <p class="services__text text text--lighter">
+                В нашем распоряжении множество партнерских транспортных компаний, которые смогут доставить заказ в&nbsp;любую точку на&nbsp;земном шаре. Вы&nbsp;получите свой заказ напрямую от&nbsp;производителя, сразу как он будет готов в&nbsp;оговоренный срок.
+              </p>
+            </figcaption>
+            <img src="img/services02x2.png"
+                  srcset="img/services02.png 589w,
+                          img/services02x2.png 2x"
+                  alt="photo of working notebook"
+                  class="services__img"
+              />
+          </figure>
+        </div>
+        <div class="services__item">
+          <figure class="services__imageblock">
+            <figcaption class="services__textblock">
+              <div class="services__title">Разработаем макет</div>
+              <p class="services__text text text--lighter">
+                Разработаем макет по&nbsp;Вашим требованиям. Индивидуальный подход к&nbsp;каждому клиенту. Составим техническое задание с&nbsp;учетом всех пожеланий. Используя свой многолетний опыт работы, учтем все нюансы производства еще на&nbsp;этапе планирования.
+              </p>
+            </figcaption>
+            <img src="img/services03x2.png"
+                  srcset="img/services03.png 589w,
+                          img/services03x2.png 2x"
+                  alt="photo of working notebook"
+                  class="services__img"
+              />
+          </figure>
+        </div>
+        <div class="services__item">
+          <figure class="services__imageblock">
+            <figcaption class="services__textblock">
+              <div class="services__title">Предложим товар из имеющегося на складе</div>
+              <p class="services__text text text--lighter">
+                Более 20-ти компаний по&nbsp;всему миру смогут предложить огромный выбор готовой продукции, которая сможет удовлетворить даже самого требовательного клиента в&nbsp;кратчайшие сроки.
+              </p>
+            </figcaption>
+            <img src="img/services04x2.png"
+                  srcset="img/services04.png 589w,
+                          img/services04x2.png 2x"
+                  alt="photo of working notebook"
+                  class="services__img"
+              />
+          </figure>
+        </div>
+      </div>
+    </div>
+    <div class="callback">
+      <div class="callback_text text text--darker">
+        У вас остались вопросы? Напишите нам 
+      </div>
+      <a href="mailto:info@balerosingapur.ru" target="_blank" rel="noopener noreferrer" class="callback__link link">info@balerotrading.com</a>
+    </div>
+    <div class="contacts">
+      <h2 class="h2">Контакты</h2>
+      <div class="contacts__block">
+        <ul class="contacts__items">
+          <li class="contacts__item">
+            <span class="contacts__title">Адрес: </span>
+            <span class="contacts__data text text--darker">I95 PEARL'S HILL TERRACE,frO3-34, SINGAPORE</span>
+          </li>
+          <li class="contacts__item">
+            <span class="contacts__title">E-mail: </span>
+            <span class="contacts__data text text--darker">info@balerotrading.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <span class="footer__text">2020 © Balero trading. Design and code by <a href="https://www.behance.net/elenachebannaya" class="footer__link link" target=”_blank”>MirtlBu</a></span>
+      </div>
+    </footer>
+    <script src="vendors/ScrollMagic.min.js"></script>
+    <script src="vendors/plugins/animation.gsap.min.js"></script>
+    <script src="vendors/plugins/animation.velocity.min.js"></script>
+    <script src="vendors/plugins/debug.addIndicators.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>

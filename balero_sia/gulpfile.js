@@ -77,16 +77,16 @@ function css() {
         .pipe(gulp.dest(paths.build));
 }
 
+function vendors() {
+    return gulp.src(paths.vendors + '**/*.js')
+        .pipe(gulp.dest(paths.build + '/vendors'));
+}
+
 function js() {
-    return gulp.src(paths.js + '*.js')
+    return gulp.src(paths.js + 'script.js')
         .pipe(plumber())
         .pipe(concat('script.js'))
         .pipe(gulp.dest(paths.build));
-}
-
-function vendors() {
-    return gulp.src(paths.vendors + '*.js')
-        .pipe(gulp.dest(paths.build + 'vendors/'));
 }
 
 function fonts() {
@@ -144,9 +144,9 @@ function watcher() {
 }
 
 const html_vers = gulp.parallel(html_rus, html_eng);
-const build = gulp.series(clean, gulp.parallel(css, js, html_vers, img, fonts, vendors, favicons));
+const build = gulp.series(clean, gulp.parallel(vendors, css, js, html_vers, img, fonts, favicons));
 const start = gulp.series(build, gulp.parallel(server, watcher));
-const prod = gulp.series(clean, gulp.parallel(css, js, html_vers, img, fonts, vendors, favicons), gulp.parallel(css_minifier, js_uglifier));
+const prod = gulp.series(clean, gulp.parallel(vendors, css, js, html_vers, img, fonts,  favicons), gulp.parallel(css_minifier, js_uglifier));
 
 exports.prod = prod;
 exports.start = start;
