@@ -6,10 +6,7 @@
   font-family: "AeonikRegular";
   src: url("fonts/AeonikTRIAL-Regular.otf");
 }
-@font-face {
-  font-family: "AeonikLight";
-  src: url("fonts/AeonikTRIAL-Light.otf");
-}
+
 $font-bold: 'AeonikBold', Arial, sans-serif;
 $font-regular: 'AeonikRegular', Arial, sans-serif;
 $font-light: 'AeonikLight', Arial, sans-serif;
@@ -22,17 +19,35 @@ $color-gray-lighter: #C3C7D7;
 
 $color-light: #FFFFFF;
 
+$background-dark: radial-gradient(130.2% 130.2% at 58.09% 120.06%, #C3C7D7 0%, #8892B0 31.23%, #4E608B 92.43%, #4E608B 97.16%);
+
 $breakpoint-tablet: 768px;
 $breakpoint-desktop-small: 1028px;
 $breakpoint-desktop-bigger: 1280px;
 
+@mixin regular {
+  font-family: $font-regular;
+  font-weight: 300;
+}
+
+@mixin bold {
+  font-family: $font-bold;
+  font-weight: 600;
+}
+
+@mixin links {
+  @include bold;
+  text-decoration: underline;
+  text-decoration-skip: edges;
+}
+
 
 body {
+  @include regular;
   width: 100%;
   position: relative;
   font-size: 16px;
-  line-height: 150%;
-  font-family: $font-regular;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -61,29 +76,20 @@ a {
 }
 
 .h1 {
-  font-size: 36px;
-  line-height: 120%;
+  @include bold;
+  font-size: 30px;
+  line-height: 1.2;
   margin-bottom: 80px;
-  font-weight: 400;
 }
 
 .h2 {
+  @include bold;
   font-size: 24px;
   line-height: 1;
   margin-bottom: 32px;
-  font-weight: 500;
-}
-
-.h1, .h2 {
-  font-family: $font-bold;
-  font-weight: 600;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .text {
-  font-weight: 300;
-  line-height: 1.5;
 
   &--lighter {
     color: $color-gray-lighter;
@@ -104,6 +110,8 @@ a {
 }
 
 .logo {
+  line-height: 1;
+
   svg {
     width: 123px;
     height: 35px;
@@ -111,29 +119,26 @@ a {
 }
 
 .link {
-  font-size: 20px;
-  font-family: $font-bold;
-  font-weight: 600;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @include links;
+  font-size: 18px;
   color: $color-gray-lighter;
-  text-decoration: underline;
-  text-decoration-skip: edges;
+  
 
   &:hover {
-    color: $color-light;
+    color: $color-dark;
   }
 
   &:focus {
     outline: none;
-    color: $color-dark-lighter;
+    color: $color-dark;
   }
 }
 
 .lang {
   display: flex;
   align-items: center;
-  margin-right: 75px;
+  margin-right: 56px;
+  margin-bottom: 4px;
 
   &__item {
     position: relative;
@@ -151,30 +156,30 @@ a {
       }
     }
 
+    &__link {
+      color: $color-gray-lighter;
+    }
+
     &:last-child {
       padding-left: 8px;
     }
 
     &--active {
-
       & .lang__link {
+        color: $color-light;
         text-decoration: none;
       }
     }
-  }
-
-  &__link {
-    color: $color-light;
   }
 }
 
 .hamburger {
   position: absolute;
-  top: 22px;
+  top: 18px;
   right: 12px;
   cursor: pointer;
-  text-decoration: none;
   padding: 8px;
+  text-decoration: none;
 
   &:after,
   &:before,
@@ -218,9 +223,11 @@ a {
 .sidebar {
   width: 50%;
   position: absolute;
+  z-index: 99;
   top: 80px;
   right: 0;
   background-color: $color-dark-lighter;
+  padding: 24px;
   box-sizing: border-box;
   text-align: center;
   visibility: hidden;
@@ -234,17 +241,13 @@ a {
 }
 
 .nav {
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 
   &__item {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     transition: background-color .2s;
     cursor: pointer;
-
-    &:hover {
-      background-color: $color-light;
-    }
   }
 }
 
@@ -255,16 +258,33 @@ a {
   width: 100%;
 
   &__item {
-    margin-bottom: 24px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   &__link {
-    color: $color-light;
+
+    & svg {
+      width: 32px;
+      height: 32px;
+
+      & path {
+        fill: $color-gray-lighter;
+
+      }
+    }
+     &:hover {
+      & svg {
+        & path {
+          fill: $color-dark;
+        }
+      }
+     }
   }
 }
 
 .hero {
-  background-color: $color-dark;
+  background-color: $color-dark-lighter;
   background-image: url(img/background-hero.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -278,7 +298,8 @@ a {
   padding: 80px 24px 80px 24px;
   text-align: center;
   color: $color-light;
-  background-color: $color-dark;
+  background: $color-dark-lighter;
+  background: $background-dark;
 
 
   &__imageblock {
@@ -339,23 +360,17 @@ a {
   }
 
   &__num {
-    font-size: 48px;
+    font-size: 24px;
     line-height: 1;
-    font-family: $font-bold;
-    font-weight: 600;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @include bold;
     margin-bottom: 8px;
     background-color: $color-light;
   }
 
   &__title {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 100%;
-    font-family: $font-bold;
-    font-weight: 600;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @include bold;
     margin-bottom: 4px;
     background-color: $color-light;
   }
@@ -371,7 +386,8 @@ a {
   padding: 80px 24px 80px 24px;
   text-align: center;
   color: $color-light;
-  background-color: $color-dark;
+  background: $color-dark-lighter;
+  background: $background-dark;
 
   &__items {
     display: flex;
@@ -382,16 +398,15 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    &:not(:last-child) {
+    margin-bottom: 120px;
+    &:last-child {
       margin-bottom: 80px;
     }
   }
 
   &__title {
-    font-size: 20px;
-    line-height: 100%;
-    font-weight: 400;
+    font-size: 18px;
+    @include bold;
     margin-bottom: 16px;
   }
 
@@ -424,9 +439,10 @@ a {
       top: 40px;
       left: 0;
       right: 0;
-      width: 100%;
+      width: calc(100% - 80px);
       height: 100%;
-      background-color: $color-dark-lighter;
+      margin: auto;
+      background-color: $color-gray-lighter;
       z-index: -1;
     }
   }
@@ -455,9 +471,7 @@ a {
     color: $color-dark;
 
     &:hover {
-      .link {
-        color: $color-dark-lighter;
-      }
+      color: $color-dark-lighter;
     }
 
     &:focus {
@@ -468,8 +482,9 @@ a {
 }
 
 .contacts {
-  padding: 80px 24px 80px 24px;
-  background-color: $color-dark;
+  padding: 80px 24px 24px 24px;
+  background: $color-dark-lighter;
+  background: $background-dark;
   color: $color-light;
   text-align: center;
 
@@ -489,34 +504,47 @@ a {
   }
 }
 
-.footer {
-  padding: 0 24px 24px 24px;
-  text-align: center;
-  background-color: $color-dark;
-  color: $color-light;
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @media (min-width: $breakpoint-tablet) {
 
   body {
-    font-size: 16px;
+    font-size: 18px;
 
     &:after {
-      background-position: 90% 90%;
+      background-position: 90% 50%;
     }
   }
 
+  .link {
+    font-size: 24px;
+  }
 
+  .sidebar {
+    position: fixed;
+    left: 0;
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    background-color: transparent;
+    width: auto;
+    padding-left: 40px;
+    box-sizing: border-box;
+  }
 
   .h1 {
-    font-size: 80px;
-    line-height: 100%;
-    margin-bottom: 40px;
+    width: 60%;
+    font-size: 48px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .h2 {
-    font-size: 36px;
-    margin-bottom: 64px;
+    margin-bottom: 120px;
+    font-size: 40px;
   }
 
   .header {
@@ -534,16 +562,15 @@ a {
     }
   }
 
+  .lang {
+    margin: 0;
+  }
+
   .hamburger {
     display: none;
   }
 
   .nav {
-    position: relative;
-    top: 0;
-    width: auto;
-    flex-direction: row;
-    justify-content: flex-end;
 
     &__items {
       display: flex;
@@ -556,19 +583,7 @@ a {
     }
 
     &__item {
-      padding: 0;
-
-      &:not(:last-child) {
-        margin-right: 48px;
-      }
-
-      &:hover {
-        background-color: transparent;
-
-        .nav__link {
-          
-        }
-      }
+      text-align: left;
     }
 
     &__link {
@@ -582,16 +597,8 @@ a {
       height: 1px;
       left: 50%;
       position: absolute;
-      
       transition: width 0.3s ease 0s, left 0.3s ease 0s;
       width: 0;
-    }
-
-    &:hover {
-      &:after {
-        width: calc(100% - 16px); 
-        left: 8px; 
-      }
     }
     }
   }
@@ -604,8 +611,13 @@ a {
   .about {
     padding: 120px 40px 180px 40px;
 
-    .text {
-      max-width: 1028px;
+    &__imageblock {
+      width: 56vw;
+      margin: 0 auto;
+    }
+
+    &__images {
+      min-height: 40vh;
     }
   }
 
@@ -613,11 +625,14 @@ a {
     padding: 120px 40px 180px 40px;
 
     .h2 {
-      margin-bottom: 120px;
+      width: 56vw;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     &__items {
-      // flex-direction: row;
+     width: 56vw;
+     margin: 0 auto;
     }
 
     &__item {
@@ -630,6 +645,7 @@ a {
 
     &__title {
       font-size: 24px;
+      margin-bottom: 16px;
     }
 
     &__text {
@@ -638,6 +654,10 @@ a {
 
     &__img {
       margin-bottom: 32px;
+    }
+
+    &__num {
+      font-size: 36px;
     }
   }
 
@@ -649,25 +669,8 @@ a {
     }
 
     &__items {
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: stretch;
-    }
-
-    &__item {
-      flex-basis: 50%;
-      box-sizing: border-box;
-
-      &:not(:last-child) {
-        margin-bottom: 0px
-      }
-
-      padding-left: 24px;
-      padding-right: 24px;
-
-      &:nth-child(1), &:nth-child(2) {
-        padding-bottom: 80px;
-      }
+      width: 56vw;
+      margin: 0 auto;
     }
 
     &__title {
@@ -690,19 +693,14 @@ a {
     }
   }
 
-  .callback {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    .h3 {
-      margin-bottom: 0;
-    }
-  }
+  
 
   .contacts {
 
     &__block {
+      width: 56vw;
+      margin-left: auto;
+      margin-right: auto;
       flex-direction: row;
       align-items: flex-start;
       justify-content: space-between;
@@ -714,106 +712,129 @@ a {
     width: auto;
 
     &__item {
-
-      &:not(:last-child) {
-        margin-right: 48px;
-      }
+      text-align: left;
     }
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 @media (min-width: $breakpoint-desktop-small) {
 
   body {
-    font-size: 18px;
+    font-size: 20px;
 
     &:after {
       background-size: 30%;
+      background-position: 90% 90%;
     }
   }
 
   .h1 {
+    font-size: 62px;
     max-width: 795px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .h2 {
-    font-size: 36px;
     margin-bottom: 64px;
   }
 
-  .h3{
-    font-size: 24px;
-    margin-bottom: 80px;
+  .header {
+    padding: 40px;
   }
 
   .hero {
-    padding: 174px 40px 174px 40px;
+    padding: 240px 40px 240px 40px;
     text-align: center;
-
-    .h3 {
-      max-width: 795px;
-    }
   }
 
-  .callback, .contacts, .features, .services, .footer {
+  .callback, .contacts, .features, .services {
     padding-left: 40px;
     padding-right: 40px;
   }
 
   .services {
 
+    &__wrapimage, &__img {
+      max-width: none;
+    }
+
+    &__wrapimage {
+      width: 320px;
+      height: auto;
+      flex: none;
+
+      &:before {
+        width: 100%;
+      }
+    }
+
     &__item {
-      flex-basis: 100%;
+      flex-direction: row;
       padding-right: 0px;
       padding-left: 0px;
 
-      &:not(:last-child) {
-        margin-bottom: 80px;
-      }
-
-      &:nth-child(1), &:nth-child(2) {
-        padding-bottom: 0px;
-      }
-
       &:nth-child(even) {
+
         .services__textblock {
           order: 0;
+          margin-right: 32px;
         }
-        .services__img {
-          margin-left: 80px;
-          order: 1;
+
+        .services__wrapimage {
+          &:before {
+            bottom: -40px;
+            right: -40px;
+            left: auto;
+            top: auto;
+          }
         }
-        
       }
+
+      
 
       &:nth-child(odd) {
         .services__textblock {
           order: 1;
+          margin-left: 32px;
         }
-        .services__img {
-          margin-right: 80px;
-          order: 0;
+        .services__wrapimage {
+          &:before {
+            top: -40px;
+            left: -40px;
+            right: auto;
+          }
         }
       }
     }
 
     &__imageblock {
-      display: flex;
       flex-direction: row;
       align-items: center;
-      height: 320px;
     }
 
     &__textblock {
-      padding: 0;
       margin-bottom: 0;
       text-align: left;
     }
 
     &__text {
       max-width: none;
+    }
+  }
+
+  .callback {
+    width: calc(56vw);
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .h3 {
+      margin-bottom: 0;
     }
   }
 }
