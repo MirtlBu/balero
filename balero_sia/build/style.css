@@ -487,7 +487,8 @@ a {
       width: 56vw;
       margin: 0 auto; }
     .about__images {
-      height: 228px; }
+      height: 228px;
+      z-index: 2; }
   .features {
     padding: 0 40px 0 40px; }
     .features .h2 {
