@@ -37,8 +37,37 @@ $breakpoint-desktop-bigger: 1280px;
 
 @mixin links {
   @include bold;
-  text-decoration: underline;
-  text-decoration-skip: edges;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+
+  &__line, &__letter {
+    display: inline-block;
+  }
+
+  &__word {
+    white-space: nowrap;
+  }
+}
+
+.h1 .letter1, .h1 .letter2 {
+  transform-origin: 50% 100%;
+  display: inline-block;
+  line-height: 1em;
+}
+
+.h_one, .h_two {
+  display: block;
 }
 
 
@@ -50,23 +79,41 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: $background-dark;
 
-  &:after {
-    content: "";
-    position: fixed;
-    display: block;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
     width: 100%;
-    background-color: transparent;
-    background-image: url(img/box.svg);
+    height: 100vh;
+    background-image: url(img/background-hero.png);
     background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: 50% 50%;
-    pointer-events: none;
+    background-size: cover;
+    background-position: bottom center;
+  }
+}
+
+
+.box {
+  position: fixed;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+
+  & svg {
+    width: 50vw;
+    height: 50vh;
+    padding-top: 50vh;
+    padding-left: 25vw;
   }
 }
 
@@ -107,6 +154,7 @@ a {
   position: absolute;
   display: flex;
   justify-content: space-between;
+  z-index: 2;
 }
 
 .logo {
@@ -122,10 +170,11 @@ a {
   @include links;
   font-size: 18px;
   color: $color-gray-lighter;
-  
+  border-bottom: 2px solid $color-gray-lighter;
 
   &:hover {
     color: $color-dark;
+    border-bottom: 2px solid $color-dark;
   }
 
   &:focus {
@@ -168,6 +217,7 @@ a {
       & .lang__link {
         color: $color-light;
         text-decoration: none;
+        border-bottom: 0px;
       }
     }
   }
@@ -180,6 +230,7 @@ a {
   cursor: pointer;
   padding: 8px;
   text-decoration: none;
+  z-index: 9;
 
   &:after,
   &:before,
@@ -197,7 +248,7 @@ a {
     &:after,
     &:before,
     .hamburger__link {
-      
+      background-color: $color-dark;
     }
   }
 
@@ -216,7 +267,6 @@ a {
 
   &:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 1px $color-light;
   }
 }
 
@@ -226,13 +276,14 @@ a {
   z-index: 99;
   top: 80px;
   right: 0;
-  background-color: $color-dark-lighter;
+  background: $background-dark;
   padding: 24px;
   box-sizing: border-box;
   text-align: center;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s;
+  mix-blend-mode: luminosity;
 
   &--active {
       visibility: visible;
@@ -256,6 +307,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 
   &__item {
     padding-top: 8px;
@@ -284,11 +336,7 @@ a {
 }
 
 .hero {
-  background-color: $color-dark-lighter;
-  background-image: url(img/background-hero.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom center;
+  position: relative;
   color: $color-light;
   padding: 0px 24px 0 24px;
   text-align: center;
@@ -297,19 +345,20 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 1;
 }
 
 .about {
+  position: relative;
   padding: 0 24px 0 24px;
   text-align: center;
   color: $color-light;
-  background: $color-dark-lighter;
-  background: $background-dark;
   height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 1;
 
 
   &__imageblock {
@@ -328,10 +377,20 @@ a {
     overflow: hidden;
     width: 100%;
     min-height: 200px;
+
+    // &:before {
+    //   content: '';
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 2px;
+    //   left: 0;
+    //   bottom -8px;
+    //   background-color: $color-light;
+    // }
   }
 
   &__img {
-    max-width: 560px;
+    // max-width: 560px;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -339,6 +398,9 @@ a {
     left: 0;
     right: 0;
     margin: 0 auto;
+    filter: grayscale(1);
+    mix-blend-mode: overlay;
+    box-sizing: border-box;
   }
 }
 
@@ -411,10 +473,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 120px;
-    &:last-child {
-      margin-bottom: 80px;
-    }
+    margin-bottom: 80px;
   }
 
   &__title {
@@ -456,7 +515,7 @@ a {
       height: 100%;
       margin: auto;
       background-color: $color-gray-lighter;
-      opacity: 0.5;
+      opacity: 0.3;
       z-index: -1;
     }
   }
@@ -466,6 +525,8 @@ a {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    filter: grayscale(1);
+    mix-blend-mode: color-burn;
   }
 }
 
@@ -475,6 +536,7 @@ a {
   flex-direction: column;
   align-items: center;
   color: $color-light;
+  background-color: $color-light;
   text-align: center;
 
   .h3 {
@@ -482,15 +544,16 @@ a {
   }
 
   &__link {
-    color: $color-dark;
+    color: $color-dark-lighter;
+    border-bottom: 2px solid $color-dark-lighter;
 
     &:hover {
-      color: $color-dark-lighter;
+      color: $color-dark;
     }
 
     &:focus {
       outline: none;
-      color: $color-dark-lighter;
+      color: $color-dark;
     }
   }
 }
@@ -508,10 +571,17 @@ a {
   flex-direction: column;
   justify-content: center;
 
+  & .h2 {
+    position: relative;
+    z-index: 1;
+  }
+
   &__block {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 1;
   }
 
   &__items {
@@ -547,23 +617,8 @@ a {
     font-size: 20px;
   }
 
-  .sidebar {
-    position: fixed;
-    left: 0;
-    right: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
-    opacity: 1;
-    visibility: visible;
-    background-color: transparent;
-    width: auto;
-    padding-left: 40px;
-    box-sizing: border-box;
-  }
-
   .h1 {
-    width: 60%;
+    // width: 60%;
     font-size: 44px;
     margin-left: auto;
     margin-right: auto;
@@ -571,6 +626,7 @@ a {
 
   .h2 {
     font-size: 32px;
+    margin-bottom: 80px;
   }
 
   .header {
@@ -588,50 +644,8 @@ a {
     }
   }
 
-  .lang {
-    margin: 0;
-  }
-
-  .hamburger {
-    display: none;
-  }
-
-  .nav {
-
-    &__items {
-      display: flex;
-      visibility: visible;
-      opacity: 1;
-      background-color: transparent;
-      width: auto;
-      position: relative;
-      top: 0;
-    }
-
-    &__item {
-      text-align: left;
-    }
-
-    &__link {
-      transition: all 0.2s;
-
-      &:after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: 0;
-      content: "";
-      display: block;
-      height: 1px;
-      left: 50%;
-      position: absolute;
-      transition: width 0.3s ease 0s, left 0.3s ease 0s;
-      width: 0;
-    }
-    }
-  }
-
   .hero {
     padding: 0 40px 0 40px;
-    background-image: url(img/background-herox2.png);
   }
 
   .about {
@@ -689,11 +703,7 @@ a {
   }
 
   .services {
-    padding: 120px 40px 180px 40px;
-
-    .h2 {
-      margin-bottom: 120px;
-    }
+    padding: 120px 40px 100px 40px;
 
     &__items {
       width: 56vw;
@@ -747,7 +757,6 @@ a {
 @media (min-width: $breakpoint-desktop-small) {
 
   body {
-    font-size: 18px;
 
     &:after {
       background-size: 30%;
@@ -755,32 +764,80 @@ a {
     }
   }
 
-  .logo {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    background: transparent;
+    width: auto;
+    padding-left: 40px;
+    box-sizing: border-box;
+  }
 
-    svg {
+  .lang {
+    margin: 0;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav {
+
+    &__items {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      background-color: transparent;
       width: auto;
-      height: auto;
+      position: relative;
+      top: 0;
+    }
+
+    &__item {
+      text-align: left;
+    }
+
+    &__link {
+      transition: all 0.2s;
+
+      &:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 1px;
+        left: 50%;
+        position: absolute;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+      }
     }
   }
 
+  .social {
+    align-items: flex-start;
+  }
+
   .h1 {
-    font-size: 62px;
-    max-width: 795px;
+    font-size: 48px;
+    // max-width: 795px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .h2 {
-    margin-bottom: 120px;
-    font-size: 40px;
+    margin-bottom: 80px;
+    font-size: 36px;
   }
 
   .header {
     padding: 40px;
-  }
-
-  .link {
-    font-size: 24px;
   }
 
   .hero {
@@ -797,6 +854,7 @@ a {
 
     &__textblock {
       order: 1;
+      text-align: left;
     }
 
     &__imageblock {
@@ -841,15 +899,12 @@ a {
 
         .services__wrapimage {
           &:before {
-            bottom: -40px;
+            top: -40px;
             right: -40px;
             left: auto;
-            top: auto;
           }
         }
       }
-
-      
 
       &:nth-child(odd) {
         .services__textblock {
@@ -858,7 +913,7 @@ a {
         }
         .services__wrapimage {
           &:before {
-            top: -40px;
+            bottom: -40px;
             left: -40px;
             right: auto;
           }
@@ -879,25 +934,16 @@ a {
     &__text {
       max-width: none;
     }
-
-    &__title {
-      font-size: 24px;
-    }
-  }
-
-  .features {
-    &__title {
-      font-size: 24px;
-    }
   }
 
   .callback {
-    width: calc(56vw);
     margin-left: auto;
     margin-right: auto;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding-left: calc((100vw - 56vw)/2);
+    padding-right: calc((100vw - 56vw)/2);
 
     &__link {
       margin-left: 32px;
@@ -914,15 +960,15 @@ a {
   }
 
   .h1 {
-    font-size: 80px;
-  }
-
-  .h2 {
     font-size: 56px;
   }
 
+  .h2 {
+    font-size: 40px;
+  }
+
   .link {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .social {
@@ -936,13 +982,13 @@ a {
 
   .features {
     &__title {
-      font-size: 28px;
+      font-size: 24px;
     }
   }
 
   .services {
     &__title {
-      font-size: 28px;
+      font-size: 24px;
     }
   }
 
