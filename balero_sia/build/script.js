@@ -33,9 +33,9 @@
 //////////////////////////////letters animation///////////////////////////////////////
 
     document.querySelectorAll('.text-wrapper__line')
-        .forEach(e => e.innerHTML = e.textContent.replaceAll(/[^ ]+/g, "<span class='text-wrapper__word'>$&</span>"));
+        .forEach(e => e.innerHTML = e.textContent.replace(/[^ ]+/g, "<span class='text-wrapper__word'>$&</span>"));
     document.querySelectorAll('.text-wrapper__word')
-        .forEach(e => e.innerHTML = e.textContent.replaceAll(/[^ ]/g, "<span class='text-wrapper__letter'>$&</span>"));
+        .forEach(e => e.innerHTML = e.textContent.replace(/[^ ]/g, "<span class='text-wrapper__letter'>$&</span>"));
 
     anime.timeline({loop: false})
       .add({
@@ -51,14 +51,10 @@
   var controller = new ScrollMagic.Controller();
 
   var wipeAnimation1 = new TimelineMax()
-      .fromTo("#about_appear1", 1, {opacity: 1}, {opacity: 0, ease: Linear.easeNone})
-      .fromTo("#about_appear2", 1, {opacity: 0}, {opacity: 1, ease: Linear.easeNone})
-      .to("#about_appear2", 1, {opacity: 0, ease: Linear.easeNone})
-      .fromTo("#about_appear3", 1, {opacity: 0}, {opacity: 1, ease: Linear.easeNone});
-
-   // create a scene for each element
+      .fromTo("#about_appear2", 1, {opacity: 0}, {opacity: 1, ease: "none", delay: 1})
+      .fromTo("#about_appear3", 1, {opacity: 0}, {opacity: 1, ease: "none", delay: 1});
    var scroll1 = new ScrollMagic.Scene({
-              triggerElement: '.about', // y value not modified, so we can use element as trigger as well
+              triggerElement: '.about',
               triggerHook: "onLeave",
               duration: "200%"
             })
@@ -67,56 +63,18 @@
             .addTo(controller);
 
   var wipeAnimation2 = new TimelineMax()
-      .fromTo("#feature_appear1", 1, {opacity: 1}, {opacity: 0, ease: Linear.easeNone})
-      .fromTo("#feature_appear2", 1, {opacity: 0}, {opacity: 1, ease: Linear.easeNone})
-      .to("#feature_appear2", 1, {opacity: 0, ease: Linear.easeNone})
-      .fromTo("#feature_appear3", 1, {opacity: 0}, {opacity: 1, ease: Linear.easeNone});
-
-   // create a scene for each element
+      .fromTo("#feature_appear1", 5, {opacity: 1}, {opacity: 0, delay: 5, ease: Linear.easeNone})
+      .fromTo("#feature_appear2", 5, {opacity: 0}, {opacity: 1, ease: Linear.easeNone})
+      .to("#feature_appear2", 5, {opacity: 0, delay: 5, ease: Linear.easeNone})
+      .fromTo("#feature_appear3", 5, {opacity: 0}, {opacity: 1, ease: Linear.easeNone});
    var scroll2 = new ScrollMagic.Scene({
-              triggerElement: '.features', // y value not modified, so we can use element as trigger as well
+              triggerElement: '.features',
               triggerHook: "onLeave",
               duration: "100%"
             })
             .setPin('.features')
             .setTween(wipeAnimation2) 
             .addTo(controller);
-
-//   var tween = TweenMax.to(".box", 0.5, {rotationY: 180});
-
-//   // build scene and supply getMousePos function as duration
-//   var scene1 = new ScrollMagic.Scene({
-//               triggerElement: ".hero",
-//               triggerHook: "onLeave", 
-//               duration: 500
-//             })
-//           .setTween(tween)
-//           .addTo(controller);
-// var scene2 = new ScrollMagic.Scene({
-//               triggerElement: ".features",
-//               triggerHook: "onEnter", 
-//               duration: 500
-//             })
-//           .setTween(tween)
-//           .addTo(controller);
-// var scene3 = new ScrollMagic.Scene({
-//               triggerElement: ".services",
-//               triggerHook: "onEnter", 
-//               duration: 500
-//             })
-//           .setTween(tween)
-//           .addTo(controller);
-// var scene4 = new ScrollMagic.Scene({
-//               triggerElement: ".contacts",
-//               triggerHook: "onEnter", 
-//               duration: 500
-//             })
-//           .setTween(tween)
-//           .addTo(controller);
-
-var navlinks = document.querySelectorAll('.nav__link');
-
-
 
 
 })()
