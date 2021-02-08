@@ -1,24 +1,26 @@
 @font-face {
-  font-family: "GothamPro-Bold";
+  font-family: "GothamPro-Bold", Arial, Helvetica, sans-serif;
   src: url("fonts/GothamPro-Bold.otf");
+  font-display: swap;
+  font-weight: 600;
 }
 @font-face {
-  font-family: "GothamPro-Medium";
+  font-family: "GothamPro-Medium", Arial, Helvetica, sans-serif;
   src: url("fonts/GothamPro-Medium.otf");
-}
-@font-face {
-  font-family: "GothamPro-Light";
-  src: url("fonts/GothamPro-Light.otf");
+  font-display: swap;
+  font-weight: 300;
 }
 
 $color-dark: #003366;
 $color-dark-lighter: #4E608B;
 
 $color-gray: #8892B0;
-$color-gray-lighter: #C3C7D7;
+$color-gray-lighter: #A5ACC4;
 
 $color-light: #FFFFFF;
 $color-light-darker: #F0F1F5;
+
+$color-link: #a0a7c1;
 
 $background-dark: radial-gradient(130.2% 130.2% at 58.09% 120.06%, #C3C7D7 0%, #8892B0 31.23%, #4E608B 92.43%, #4E608B 97.16%);
 
@@ -26,23 +28,9 @@ $breakpoint-tablet: 768px;
 $breakpoint-desktop-small: 1024px;
 $breakpoint-desktop-bigger: 1280px;
 
-@mixin regular {
-  font-family: "GothamPro-Medium";
-  font-weight: 300;
-}
-
-@mixin bold {
-  font-family: "GothamPro-Bold";
-  font-weight: 600;
-}
-
-@mixin light {
-  font-family: "GothamPro-Light";
-  font-weight: 100;
-}
 
 @mixin links {
-  @include bold;
+  font-family: "GothamPro-Bold";
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -78,7 +66,7 @@ $breakpoint-desktop-bigger: 1280px;
 
 
 body {
-  @include regular;
+  font-family: "GothamPro-Medium";
   width: 100%;
   position: relative;
   font-size: 14px;
@@ -108,14 +96,16 @@ a {
 }
 
 .h1 {
-  @include bold;
+  font-family: "GothamPro-Bold";
+  position: relative;
   font-size: 30px;
   line-height: 1.2;
   margin-bottom: 80px;
 }
 
 .h2 {
-  @include bold;
+  font-family: "GothamPro-Bold";
+  position: relative;
   font-size: 24px;
   line-height: 1;
   margin-bottom: 32px;
@@ -134,47 +124,42 @@ a {
 
 .header {
   width: 100%;
-  padding: 20px;
+  padding: 16px;
   box-sizing: border-box;
   position: absolute;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   z-index: 2;
 }
 
-.logo {
-  line-height: 1;
-
-  &__regular {
-    display: none;
-  }
-
+.logo svg {
+  width: 80px;
+  height: 30px;
 }
 
 .link {
   @include links;
-  font-size: 18px;
-  color: $color-gray-lighter;
-  border-bottom: 2px solid $color-gray-lighter;
+  font-size: 14px;
+  color: $color-link;
+  border-bottom: 2px solid $color-link;
   transition: all .2s ease-in-out;
 
   &:hover {
     transform: scale(1.1);
-    color: $color-dark;
-    border-bottom: 2px solid $color-dark;
+    color: $color-light-darker;
+    border-bottom: 2px solid $color-light-darker;
   }
 
   &:focus {
     outline: none;
-    color: $color-dark;
+    color: $color-light-darker;
   }
 }
 
 .lang {
   display: flex;
   align-items: center;
-  margin-right: 56px;
-  margin-bottom: 4px;
 
   &__item {
     position: relative;
@@ -192,10 +177,6 @@ a {
       }
     }
 
-    &__link {
-      color: $color-gray-lighter;
-    }
-
     &:last-child {
       padding-left: 8px;
     }
@@ -210,93 +191,54 @@ a {
   }
 }
 
-.hamburger {
-  position: absolute;
-  top: 25px;
-  right: 12px;
-  cursor: pointer;
-  padding: 8px;
-  text-decoration: none;
-  z-index: 9;
-
-  &:after,
-  &:before,
-  &__link {
-    width: 36px;
-    background-color: $color-light;
-    content: '';
-    display: block;
-    height: 2px;
-    margin: 5px 0;
-    transition: all .2s ease-in-out;
-  }
-
-  &:hover {
-    &:after,
-    &:before,
-    .hamburger__link {
-      background-color: $color-dark;
-    }
-  }
-
-  &--active {
-
-    &:after {
-      transform: translateY(-7px) rotate(-135deg);
-    }
-    &:before {
-      transform: translateY(7px) rotate(135deg);
-    }
-    .hamburger__link {
-      transform: scale(0);
-    }
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
-
 .sidebar {
-  width: 50%;
-  position: absolute;
+  position: fixed;
   z-index: 99;
-  top: 80px;
-  right: 0;
-  background: $background-dark;
-  padding: 24px;
+  top: 0px;
+  left: 0px;
+  padding: 4px;
   box-sizing: border-box;
   text-align: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.2s;
-
-  &--active {
-      visibility: visible;
-      opacity: 1;
-    }
+  transform-origin: top left;
+  top: calc(100vh - 16px);
+  transform: rotate(-90deg);
 }
 
 .nav {
-  margin-bottom: 40px;
+  display: flex;
 
   &__item {
     padding-top: 8px;
     padding-bottom: 8px;
     cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+
+  &__link {
+    border-bottom: none;
+
+    &:hover {
+      border-bottom: none;
+    }
   }
 }
 
-
 .social {
   display: flex;
-  flex-direction: column;
   width: 100%;
   align-items: center;
+  justify-content: center;
 
   &__item {
     padding-top: 8px;
     padding-bottom: 8px;
+
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
   }
 
   &__link {
@@ -307,7 +249,7 @@ a {
       transition: all .2s ease-in-out;
 
       & path {
-        fill: $color-gray-lighter;
+        fill: $color-light-darker;
 
       }
     }
@@ -315,36 +257,35 @@ a {
       & svg {
         transform: scale(1.1);
         & path {
-          fill: $color-dark;
+          fill: $color-gray-lighter;
         }
       }
      }
   }
 }
 
-.hero {
+.hero, .about, .features, .contacts {
   position: relative;
-  color: $color-light;
-  padding: 0px 24px 0 24px;
-  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 100%;
   height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.hero {
+  color: $color-light;
+  text-align: center;
+  display: flex;
   z-index: 1;
 }
 
 .about {
-  position: relative;
-  padding: 0 24px 0 24px;
   text-align: center;
   color: $color-light;
-  height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   z-index: 1;
 
 
@@ -389,14 +330,8 @@ a {
 }
 
 .features {
-  padding: 0 24px 0 24px;
   background-color: $color-light;
   color: $color-dark;
-  height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   &__h2 {
     text-align: center;
@@ -420,7 +355,7 @@ a {
   &__num {
     font-size: 24px;
     line-height: 1;
-    @include bold;
+    font-family: "GothamPro-Bold";
     margin-bottom: 8px;
     background-color: $color-light;
   }
@@ -428,7 +363,7 @@ a {
   &__title {
     font-size: 18px;
     line-height: 100%;
-    @include bold;
+    font-family: "GothamPro-Bold";
     margin-bottom: 4px;
     background-color: $color-light;
   }
@@ -441,12 +376,10 @@ a {
 }
 
 .services {
-  padding: 80px 24px 80px 24px;
+  padding: 80px 40px 80px 40px;
   text-align: center;
   color: $color-light;
-  background: $color-dark-lighter;
   background: $background-dark;
-  box-sizing: border-box;
 
   &__items {
     display: flex;
@@ -462,7 +395,7 @@ a {
 
   &__title {
     font-size: 18px;
-    @include bold;
+    font-family: "GothamPro-Bold";
     margin-bottom: 16px;
   }
 
@@ -515,7 +448,7 @@ a {
 }
 
 .callback {
-  padding: 80px 24px 80px 24px;
+  padding: 80px 40px 80px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -532,22 +465,16 @@ a {
 
     &:hover, &:focus {
       color: $color-dark;
+      border-bottom: 2px solid $color-dark;
     }
   }
 }
 
 .contacts {
-  position: relative;
-  padding: 0 24px 0 24px;
   background: $color-dark-lighter;
   background: $background-dark;
   color: $color-light;
   text-align: center;
-  height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   & .h2 {
     position: relative;
@@ -574,10 +501,22 @@ a {
 
 
 .footer {
+  padding: 16px;
+  box-sizing: border-box;
   position: absolute;
-  bottom: 24px;
+  bottom: 0;
   left: 0;
   right: 0;
+
+  &__link {
+    color: $color-dark-lighter;
+    border-bottom: 2px solid $color-dark-lighter;
+
+    &:hover, &:focus {
+      color: $color-dark;
+      border-bottom: 2px solid $color-dark;
+    }
+  }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -605,32 +544,19 @@ a {
 
   .header {
     padding: 40px 40px 40px 40px;
-    align-items: center;
   }
 
-  .hamburger {
-    top: 45px;
+  .logo svg {
+    width: auto;
+    height: auto;
   }
 
-  .logo {
-    margin-left: 0;
-    height: 54px;
-
-    &__regular {
-      display: block;
-    }
-    &__light {
-      display: none;
-    }
-
-  }
-
-  .hero {
-    padding: 0 40px 0 40px;
+  .sidebar {
+    padding-top: 26px;
+    top: calc(100vh - 40px);
   }
 
   .about {
-    padding: 0 40px 0 40px;
 
     &__imageblock {
       width: 56vw;
@@ -644,7 +570,6 @@ a {
   }
 
   .features {
-    padding: 0 40px 0 40px;
 
     .h2 {
       width: 56vw;
@@ -679,7 +604,8 @@ a {
   }
 
   .services {
-    padding: 120px 40px 100px 40px;
+    padding-top: 120px;
+    padding-bottom: 120px;
 
     &__items {
       width: 56vw;
@@ -720,7 +646,20 @@ a {
 
     &__item {
       text-align: left;
+
+      &:not(:last-child) {
+        margin-right: 48px;
+      }
     }
+
+    &__link svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  .footer {
+    padding: 40px;
   }
 }
 
@@ -736,52 +675,6 @@ a {
     }
   }
 
-  .sidebar {
-    position: fixed;
-    left: 0;
-    right: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
-    opacity: 1;
-    visibility: visible;
-    background: transparent;
-    width: auto;
-    padding-left: 40px;
-    box-sizing: border-box;
-  }
-
-  .lang {
-    margin: 0;
-  }
-
-  .hamburger {
-    display: none;
-  }
-
-  .nav {
-
-    &__items {
-      display: flex;
-      visibility: visible;
-      opacity: 1;
-      background-color: transparent;
-      width: auto;
-      position: relative;
-      top: 0;
-    }
-
-    &__item {
-      text-align: left;
-    }
-
-    
-  }
-
-  .social {
-    align-items: flex-start;
-  }
-
   .h1 {
     font-size: 48px;
     margin-left: auto;
@@ -795,16 +688,6 @@ a {
 
   .header {
     padding: 40px;
-  }
-
-  .hero {
-    padding: 0 40px 0 40px;
-    text-align: center;
-  }
-
-  .callback, .contacts, .features, .services {
-    padding-left: 40px;
-    padding-right: 40px;
   }
 
   .about {
@@ -903,13 +786,6 @@ a {
 
     &__link {
       margin-left: 32px;
-    }
-  }
-
-  .contacts {
-    &__logo {
-      width: 320px;
-      height: 388px;
     }
   }
 }

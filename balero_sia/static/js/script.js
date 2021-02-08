@@ -1,33 +1,12 @@
 (function() {
   const body = document.querySelector('body');
-  const hamburger = document.querySelector('.hamburger');
-  const sidebar = document.querySelector('.sidebar');
   const navitems = document.querySelectorAll('.nav__item');
-
-  hamburger.addEventListener('click', function(e) {
-    console.log('hui')
-    e.stopPropagation();
-    hamburger.classList.contains('hamburger--active') ? hamburger.classList.remove('hamburger--active') : hamburger.classList.add('hamburger--active');
-    sidebar.classList.contains('sidebar--active') ? sidebar.classList.remove('sidebar--active') : sidebar.classList.add('sidebar--active');
-  });
-
-  body.addEventListener('click', function() {
-    if(sidebar.classList.contains('sidebar--active')) {
-      sidebar.classList.remove('sidebar--active');
-      hamburger.classList.remove('hamburger--active');
-    }
-  });
 
   navitems.forEach(element => {
     element.addEventListener('click', function(e) {
       let block = this.dataset.block;
       document.querySelector('.' + block).scrollIntoView({behavior: "smooth"});
     });
-  });
-
-  document.addEventListener("scroll", function() {
-    // get the active element and call blur
-    document.activeElement.blur();
   });
 
 //////////////////////////////letters animation///////////////////////////////////////
@@ -63,10 +42,10 @@
             .addTo(controller);
 
   var wipeAnimation2 = new TimelineMax()
-      .fromTo("#feature_appear1", 5, {opacity: 1}, {opacity: 0, delay: 5, ease: Linear.easeNone})
-      .fromTo("#feature_appear2", 5, {opacity: 0}, {opacity: 1, ease: Linear.easeNone})
-      .to("#feature_appear2", 5, {opacity: 0, delay: 5, ease: Linear.easeNone})
-      .fromTo("#feature_appear3", 5, {opacity: 0}, {opacity: 1, ease: Linear.easeNone});
+      .fromTo("#feature_appear1", 1, {opacity: 1}, {opacity: 0, delay: 1, ease: Linear.easeNone})
+      .fromTo("#feature_appear2", 1, {opacity: 0}, {opacity: 1, ease: Linear.easeNone})
+      .to("#feature_appear2", 1, {opacity: 0, delay: 1, ease: Linear.easeNone})
+      .fromTo("#feature_appear3", 1, {opacity: 0}, {opacity: 1, ease: Linear.easeNone});
    var scroll2 = new ScrollMagic.Scene({
               triggerElement: '.features',
               triggerHook: "onLeave",
