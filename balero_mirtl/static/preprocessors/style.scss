@@ -1,0 +1,283 @@
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+@mixin vintage {
+  background-size: 90%;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  filter: grayscale(0.4);
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  background: #E6D5AA;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: 'Manrope', Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  color: #171717;
+}
+section,
+footer {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width:  100%; 
+  padding-top: 40px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.h1, .h2 {
+  font-family: 'Viaoda Libre', cursive;
+  font-size: 30px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  z-index: 2;
+}
+
+a {
+  text-decoration: none;
+  font-size: 16px;
+  font-family: 'Manrope', Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  color: #171717;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.col {
+  display: flex;
+
+  &:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &-top {
+    align-items: flex-start;
+  }
+
+  &-bottom {
+    align-items: flex-end;
+  }
+
+  &-narrow {
+    width: 16vw;
+    flex-grow: 1;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+  }
+  &-wide {
+    width: 32vw;
+    flex-grow: 2;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+  }
+}
+
+.h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  filter: grayscale(0.6);
+
+  &__vintage {
+    mix-blend-mode: overlay;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 16vw;
+  height: 100vh;
+  padding-left: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.nav {
+  position: absolute;
+  transform: rotate(-90deg) translateY(-50%);
+  bottom: 40px;
+  left: 50%;
+
+  &__item {
+    margin-bottom: 8px;
+  }
+}
+
+#leftArrow {
+  left: 40px;
+}
+
+#rightArrow {
+  right: 40px;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  cursor: pointer;
+  opacity: 0.75;
+  width: 40px;
+  height: 40px;
+  stroke-width: 2px;
+  stroke: #171717;
+  fill: transparent;
+  display: none;
+  transition: all 0.4s linear;
+
+  &--active {
+    display: block;
+  }
+
+  &:hover {
+    stroke: #fff;
+  }
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  &-wrap {
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+  }
+
+  &__items {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__item {
+    height: 100%;
+    object-fit: cover;
+    padding: 0 40px 0 40px;
+    box-sizing: border-box;
+  }
+}
+
+.hero {
+  justify-content: center;
+  align-items: center;
+}
+
+.about {
+  background: #bdd3c9;
+  background-image: url("img/transparent-noise.png");
+
+  & .anim1 {
+    background-image: url("img/flower1.png");
+    background-position: center;
+    @include vintage;
+  }
+  & .anim4 {
+    background-image: url("img/flower2.png");
+    background-position: top;
+    @include vintage;
+  }
+}
+
+.features {
+  background: #AEBEA1;
+  background-image: url("img/transparent-noise.png");
+
+  .col {
+    transition: width 0.4s linear;
+  }
+
+  & .anim1 {
+    background-image: url("img/flower3.png");
+    background-position: center;
+    @include vintage;
+  }
+  & .anim2 {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  & .anim3 {
+    padding: 0 0 0 0;
+  }
+  & .anim4 {
+    background-image: url("img/flower4.png");
+    background-position: top;
+    @include vintage;
+  }
+
+  &--active {
+    & .anim2, & .anim4 {
+       width: 0;
+       padding: 0;
+       font-size: 0;
+       border: none;
+       background: none;
+       flex: none;
+    }
+
+    & .anim3 {
+      width: 70vw;
+      border: none;
+    }
+  }
+
+  &__link {
+    &--active {
+      display: none;
+    }
+  }
+
+  &__back {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__h2 {
+    &--active {
+      display: none;
+    }
+  }
+}
+
+.footer {
+  background: #51624F;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .h1, .h2 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .h1, .h2 {
+    font-size: 88px;
+  }
+}
