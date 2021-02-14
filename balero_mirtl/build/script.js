@@ -1,10 +1,9 @@
 const sections = document.querySelectorAll("section");
-console.log(sections);
 
 function goToSection(section, anim) {
   gsap.to(window, {
     scrollTo: {y: section, autoKill: false},
-    duration: 1
+    duration: 2
   });
   
   if(anim) {
@@ -25,39 +24,106 @@ sections.forEach(section => {
 
   ScrollTrigger.create({
     trigger: section,
-    onEnter: () => goToSection(section, intoAnim)
-  });
-
-  ScrollTrigger.create({
-    trigger: section,
-    start: "bottom bottom",
-    onEnterBack: () => goToSection(section)
+    onEnter: () => goToSection(section, intoAnim),
+    onEnterBack: () => goToSection(section, intoAnim)
   });
 
 });
 ////////learn more////////
-const features = document.querySelector(".features");
-const more = document.querySelector(".features__link");
-const back = document.querySelector(".features__back");
+
+function toggleThisOpacity(element) {
+  return gsap.to(element, {
+                  opacity: 0,
+                  duration: 2
+                });
+}
+
 const h2 = document.querySelector(".features__h2");
+
+var h2Toggle = toggleThisOpacity(h2);
+h2Toggle.reverse();
+
+const ftext = document.querySelector(".features .text");
+
+var ftextToggle = gsap.to(ftext, {
+    opacity: 0,
+    duration: 1
+  });
+ftextToggle.reverse();
+
+const more = document.querySelector(".features__link");
+
+var moreToggle = gsap.to(more, {
+    opacity: 0,
+    duration: 0.5
+  });
+moreToggle.reverse();
+
+const back = document.querySelector(".features__back");
+
+var backToggle = gsap.to(back, {
+    opacity: 0,
+    duration: 0.5
+  });
+
+
+const features = document.querySelector(".features");
+const grow = document.querySelector(".features .anim3");
+const shrink1 = document.querySelector(".features .anim2");
+const shrink2 = document.querySelector(".features .anim4");
+var growToggle = gsap.to(grow, {
+    width: '70vw',
+    borderWidth: '0px',
+    duration: 1
+  });
+growToggle.reverse();
+var shrink1Toggle = gsap.to(shrink1, {
+    width: '0vw',
+    padding: '0px',
+    flex: 'none',
+    background: 'none',
+    borderWidth: '0px',
+    duration: 1
+  });
+shrink1Toggle.reverse();
+var shrink2Toggle = gsap.to(shrink2, {
+    width: '0vw',
+    padding: '0px',
+    flex: 'none',
+    background: 'none',
+    borderWidth: '0px',
+    duration: 1
+  });
+shrink2Toggle.reverse();
+
+
+
 const arrows = document.querySelectorAll(".arrow");
+
 more.addEventListener('click', function(e){
   e.stopPropagation();
-    features.classList.contains('features--active') ? features.classList.remove('features--active') : features.classList.add('features--active');
-    more.classList.contains('features__link--active') ? more.classList.remove('features__link--active') : more.classList.add('features__link--active');
-    back.classList.contains('features__back--active') ? back.classList.remove('features__back--active') : back.classList.add('features__back--active');
-    h2.classList.contains('features__h2--active') ? h2.classList.remove('features__h2--active') : h2.classList.add('features__h2--active');
-    arrows.forEach(element => {
+  growToggle.play();
+  shrink1Toggle.play();
+  shrink2Toggle.play();
+  h2Toggle.play();
+  ftextToggle.play();
+  moreToggle.play();
+  backToggle.reverse();
+
+  arrows.forEach(element => {
     element.classList.contains('arrow--active') ? element.classList.remove('arrow--active') : element.classList.add('arrow--active');
   });
 });
 back.addEventListener('click', function(e){
   e.stopPropagation();
-    features.classList.contains('features--active') ? features.classList.remove('features--active') : features.classList.add('features--active');
-    more.classList.contains('features__link--active') ? more.classList.remove('features__link--active') : more.classList.add('features__link--active');
-    back.classList.contains('features__back--active') ? back.classList.remove('features__back--active') : back.classList.add('features__back--active');
-    h2.classList.contains('features__h2--active') ? h2.classList.remove('features__h2--active') : h2.classList.add('features__h2--active');
-    arrows.forEach(element => {
+  growToggle.reverse();
+  shrink1Toggle.reverse();
+  shrink2Toggle.reverse();
+  h2Toggle.reverse();
+  ftextToggle.reverse();
+  moreToggle.reverse();
+  backToggle.play();
+  arrows.forEach(element => {
     element.classList.contains('arrow--active') ? element.classList.remove('arrow--active') : element.classList.add('arrow--active');
   });
 });
@@ -70,7 +136,7 @@ const slider = document.querySelector(".slider");
 
 let oldSlide = 0;
 let activeSlide = 0;
-let dur = 1;
+let dur = 2;
 let offsets = [];
 let iw = slider.offsetWidth;
 
